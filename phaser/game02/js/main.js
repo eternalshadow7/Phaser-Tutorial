@@ -20,7 +20,7 @@ var diamond;
 function create() {
 	// place your assets
 	game.add.sprite(0,0,'star');
-	
+
 	
 	// Since we are going to use physics in the game, we enable the Arcade Physics system
 	game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -29,6 +29,7 @@ function create() {
 	
 	// This is a simple background for the game.
 	game.add.sprite(0, 0, 'sky');
+	
 	
 	// The platforms group contains the ground and the 2 ledges we can jump on 
 	platforms=game.add.group();
@@ -44,6 +45,7 @@ function create() {
 	
 	// This stops it from falling away when you jump on it
 	ground.body.immovable = true;
+	
 	
 	// Now let's create five ledges
 	
@@ -82,6 +84,17 @@ function create() {
 	// Our two animations, walking left and right.
 	player.animations.add('left', [0, 1], 10, true);
 	player.animations.add('right',[2, 3], 10, true);
+	
+	
+    diamond = game.add.sprite(game.world.randomX, game.world.randomY-64, 'diamond');
+	
+    game.physics.arcade.enable(diamond);
+	diamond.body.gravity.y=300;
+	diamond.body.collideWorldBounds = true;
+	diamond.enableBody=true;
+	
+
+	
 
     stars = game.add.group();
 	stars.enableBody = true;
@@ -103,10 +116,7 @@ function create() {
 	scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
     cursors = game.input.keyboard.createCursorKeys();
 	
-	diamond = game.add.sprite(game.world.randomX, game.world.randomY, 'diamond');
-    game.physics.arcade.enable(diamond);
-	diamond.body.gravity.y=6;
-	diamond.enableBody=true;
+	
 	
 	
 }
